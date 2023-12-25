@@ -437,38 +437,39 @@ end
 % The detailed MATLAB code implementing the Save Processed Signal follows below:
 
 % Create a folder if it doesn't exist
-folderName = 'ReceivedSignals';
-if ~exist(folderName, 'dir')
-    mkdir(folderName);
-end
+%folderName = 'ReceivedSignals';
+%if ~exist(folderName, 'dir')
+    %mkdir(folderName);
+%end
 
 % Specify the base filename and path
-if RFFilterApplied ~= 0
-    if Offset == 0
-        baseFilename = 'Received_Without_Offset_Signal';
-    elseif Offset == 0.1e3
-        baseFilename = 'Received_With_Offset_0.1KHz_Signal';
-    else
-        baseFilename = 'Received_With_Offset_1KHz_Signal';
-    end
-else
-    if Offset == 0
-        baseFilename = 'Received_Without_Offset_Signal_Without_RF_Filter';
-    elseif Offset == 0.1e3
-        baseFilename = 'Received_With_Offset_0.1KHz_Signal_Without_RF_Filter';
-    else
-        baseFilename = 'Received_With_Offset_1KHz_Signal_Without_RF_Filter';
-    end
-end
+%if RFFilterApplied ~= 0
+    %if Offset == 0
+        %baseFilename = 'Received_Without_Offset_Signal';
+    %elseif Offset == 0.1e3
+        %baseFilename = 'Received_With_Offset_0.1KHz_Signal';
+    %else
+        %baseFilename = 'Received_With_Offset_1KHz_Signal';
+    %end
+%else
+    %if Offset == 0
+        %baseFilename = 'Received_Without_Offset_Signal_Without_RF_Filter';
+    %elseif Offset == 0.1e3
+        %baseFilename = 'Received_With_Offset_0.1KHz_Signal_Without_RF_Filter';
+    %else
+        %baseFilename = 'Received_With_Offset_1KHz_Signal_Without_RF_Filter';
+    %end
+%end
 
 % Save signal in .wav format
-filename = fullfile(folderName, [baseFilename '_' num2str(ChosenSignalIndex) '.wav']);
+%filename = fullfile(folderName, [baseFilename '_' num2str(ChosenSignalIndex) '.wav']);
 
 % Use audiowrite to save the audio signal
-audiowrite(filename, LPFFilteredSignal, FsCarrier);
+%audiowrite(filename, LPFFilteredSignal, FsCarrier);
 
-% Display a message indicating the successful save
-disp(['Audio signal ', num2str(ChosenSignalIndex), ' saved as ', filename]);
+% Display a message indicating the successful save and play audio
+%disp(['Audio signal ', num2str(ChosenSignalIndex), ' saved as ', filename]);
+play(LPFFilteredSignal)
 
 %% FFT Plotting Function Overview
 % The section defines a MATLAB function, `plotFFT`, which is used to plot the
@@ -514,25 +515,25 @@ function plotFFT(signal, Fs, titleText)
     grid on;
 
     % Save the figure with a unique filename
-    persistent FigureNum;
+    %persistent FigureNum;
     
-    if isempty(FigureNum)
-        FigureNum = 1;
-    else
-        FigureNum = FigureNum + 1;
-    end
+    %if isempty(FigureNum)
+        %FigureNum = 1;
+    %else
+        %FigureNum = FigureNum + 1;
+    %end
 
     % Create a folder for saving figures if it doesn't exist
-    folderName = 'FigurePlots';
-    if ~exist(folderName, 'dir')
-        mkdir(folderName);
-    end
+    %folderName = 'FigurePlots';
+    %if ~exist(folderName, 'dir')
+        %mkdir(folderName);
+    %end
 
     % Define the filename based on the figure number and title
-    saveFilename = fullfile(folderName, [num2str(FigureNum),'- ', titleText, '.png']);
+    %saveFilename = fullfile(folderName, [num2str(FigureNum),'- ', titleText, '.png']);
     
     % Save the figure only if the file doesn't already exist
-    if ~exist(saveFilename, 'file')
-        saveas(gcf, saveFilename);
-    end
+    %if ~exist(saveFilename, 'file')
+        %saveas(gcf, saveFilename);
+    %end
 end
