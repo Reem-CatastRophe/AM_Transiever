@@ -469,7 +469,9 @@ end
 
 % Display a message indicating the successful save and play audio
 %disp(['Audio signal ', num2str(ChosenSignalIndex), ' saved as ', filename]);
-play(LPFFilteredSignal)
+LPFFilteredSignal=downsample(LPFFilteredSignal,UpsamplingFactor);
+FsCarrier=FsCarrier/UpsamplingFactor;
+sound(LPFFilteredSignal, FsCarrier);
 
 %% FFT Plotting Function Overview
 % The section defines a MATLAB function, `plotFFT`, which is used to plot the
